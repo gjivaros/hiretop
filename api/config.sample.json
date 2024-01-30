@@ -1,0 +1,18 @@
+{
+  "thisServer": {
+    "port": 9000,
+    "hostName": null,
+    "siteUrl": "http://localhost:9000"
+  },
+  "sqliteFiles": {
+    "primary": "data/benindev.db"
+  },
+  "log": {
+    "level": "debug"
+  },
+  "jwtConstants": {
+    "secret": "secret",
+    "expiresIn": "180d"
+  },
+  "production": false
+}
