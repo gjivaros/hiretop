@@ -3,36 +3,6 @@ import { useEffect } from "react";
 import { findAllMission } from "../../../helpers/mission-helpers";
 import { useAppStore } from "../../../store/app-store";
 
-
-const jobs = [
-  {
-    id: "1",
-    name: "Backend developer",
-    location: 'Afrique/Togo',
-    applications: 12,
-    status: 'pending',
-    posted: '2 weeks',
-  },
-  {
-    id: "2",
-    name: "Senior Backend developer",
-    location: 'Afrique/Benin',
-    applications: 9,
-    status: 'open',
-    posted: '2 months',
-  },
-  {
-    id: "3",
-    name: "Senior UI/UX developer",
-    location: 'Afrique/Ghana',
-    applications: 8,
-    status: 'closed',
-    posted: '2 days',
-  },
-]
-
-
-
 function getStyle(status: string): string {
   const statusStyle = {
     open: 'green',

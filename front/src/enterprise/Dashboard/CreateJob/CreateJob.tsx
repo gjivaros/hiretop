@@ -1,14 +1,12 @@
 import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormLabel, Input, Select, Stack, Textarea, useDisclosure, useToast } from "@chakra-ui/react"
 import { useRef } from "react"
 import { http } from "../../../http-module/http-module"
-import { useAppStore } from "../../../store/app-store"
 
 interface CreateJobProps {
   actionButton: (onOpen: () => void) => JSX.Element
 }
 
 export function CreateJob({ actionButton }: CreateJobProps) {
-  const { setMissions } = useAppStore()
   const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
 

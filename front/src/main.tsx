@@ -2,7 +2,6 @@ import { ChakraProvider, CircularProgress, Flex, extendTheme } from '@chakra-ui/
 import { boolVal, listValOrUndef, strVal, strValOrUndef } from '@paroi/data-formatters-lib'
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter } from 'react-router-dom'
 import App from './App.tsx'
 import { fetchToken, http } from './http-module/http-module.ts'
 import { LoginPage } from './pages/loginPage.tsx'
@@ -19,16 +18,6 @@ const colors = {
 
 const theme = extendTheme({ colors })
 
-const router = createBrowserRouter([
-  {
-    path: "/login",
-    element: <LoginPage />
-  },
-  {
-    path: "/",
-    element: <App />
-  }
-])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

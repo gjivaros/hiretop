@@ -19,7 +19,6 @@ import {
 import { strVal } from '@paroi/data-formatters-lib'
 import { useRef } from 'react'
 import { http, setToken } from '../http-module/http-module'
-import { useAppStore } from '../store/app-store'
 
 const avatars = [
   {
@@ -66,7 +65,6 @@ const Blur = (props: IconProps) => {
 }
 
 export function LoginPage() {
-  const { setAccount } = useAppStore()
   const toast = useToast()
   const formStore = {
     file: useRef<HTMLInputElement>(null),
