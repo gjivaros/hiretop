@@ -27,8 +27,13 @@ export class CreateMissionDto {
   @IsString()
   name!: string;
 
-  @ApiProperty({ nullable: true })
-  description?: string;
+  @ApiProperty()
+  @IsString()
+  localisation!: string;
+
+  @ApiProperty()
+  @IsString()
+  description!: string;
 
   @ApiProperty()
   @IsObject()

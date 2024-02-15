@@ -11,7 +11,7 @@ import {
   UnauthorizedException,
   UseGuards,
 } from "@nestjs/common";
-import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiQuery, ApiTags } from "@nestjs/swagger";
 import { appLog } from "src/context";
 import { AccountEntity } from "../account/account.entity";
 import { JwtAuthGuard } from "../auth/jwt.auth.guard";
@@ -44,9 +44,14 @@ export class MissionController {
   }
 
   @Get()
+  @ApiQuery({
+    name: "status",
+    required: false,
+    type: "string",
+  })
   findAll(
     @Request() req: Request & { user?: AccountEntity },
-    @Query("status") status: MissionStatus
+    @Query("status") status?: MissionStatus
   ) {
     appLog.debug("logged user", req.user);
 

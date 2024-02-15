@@ -5,9 +5,11 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { ApplicationEntity } from "../application/application.entity";
 import { EnterpriseEntity } from "../enterprise/enterprise.entity";
 import { MissionStatus, SalaryEntity } from "./mission.inputs";
 
@@ -28,6 +30,9 @@ export class MissionEntity {
   @Column({ type: "text" })
   salary!: SalaryEntity;
 
+  @Column({ nullable: true })
+  localisation?: string;
+
   @Column()
   enterpriseId!: string;
 
@@ -42,6 +47,11 @@ export class MissionEntity {
   })
   @JoinColumn({ name: "enterpriseId" })
   enterprise!: EnterpriseEntity;
+
+  @OneToMany(() => ApplicationEntity, (application) => application.mission, {
+    eager: true,
+  })
+  applications!: ApplicationEntity[];
 
   @AfterLoad()
   parseSalary() {

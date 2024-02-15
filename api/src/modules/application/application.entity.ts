@@ -2,10 +2,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryColumn,
   Unique,
   UpdateDateColumn,
 } from "typeorm";
+import { ApplicantEntity } from "../applicant/applicant.entity";
+import { MissionEntity } from "../mission/mission.entity";
 import { ApplicationStatus } from "./application.inputs";
 
 @Entity("Application")
@@ -28,4 +32,12 @@ export class ApplicationEntity {
 
   @UpdateDateColumn()
   updatedAt!: string;
+
+  @ManyToOne(() => MissionEntity, (mission) => mission.applications)
+  @JoinColumn({ name: "missionId" })
+  mission?: MissionEntity;
+
+  @ManyToOne(() => ApplicantEntity, (applicant) => applicant.applications)
+  @JoinColumn({ name: "applicantId" })
+  applicant?: ApplicantEntity;
 }

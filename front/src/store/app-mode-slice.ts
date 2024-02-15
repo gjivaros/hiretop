@@ -14,6 +14,7 @@ export const createAppModeSlice: StateCreator<
   AppModeSlice
 > = (set) => ({
   mode: "enterprise",
+
   setMode(mode) {
     set({ mode });
   },

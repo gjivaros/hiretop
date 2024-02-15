@@ -1,4 +1,7 @@
 import { Badge, Button, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { findAllMission } from "../../../helpers/mission-helpers";
+import { useAppStore } from "../../../store/app-store";
 
 
 const jobs = [
@@ -42,6 +45,14 @@ function getStyle(status: string): string {
 }
 
 export function JobTable() {
+  const { missions, setMissions } = useAppStore()
+
+  const syncMission = async () => {
+    setMissions(await findAllMission())
+  }
+
+  useEffect(() => { syncMission().catch(console.error) }, [])
+
   return <TableContainer>
     <Table variant='simple'>
       <Thead>
@@ -56,12 +67,12 @@ export function JobTable() {
       </Thead>
       <Tbody>
         {
-          jobs.map(job => <Tr>
-            <Td>{job.name}</Td>
-            <Td>{job.location}</Td>
-            <Td>{job.applications}</Td>
-            <Td ><Badge colorScheme={getStyle(job.status)}>{job.status}</Badge></Td>
-            <Td  >{job.posted}</Td>
+          missions.map(mission => <Tr key={mission.id}>
+            <Td>{mission.name}</Td>
+            <Td>{mission.localisation}</Td>
+            <Td>{mission.applications.length}</Td>
+            <Td ><Badge colorScheme={getStyle(mission.status)}>{mission.status}</Badge></Td>
+            <Td  >{mission.createdAt}</Td>
             <Td ><Button>View</Button></Td>
           </Tr>)
         }

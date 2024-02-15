@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { appLog } from "src/context";
 import { comparePassword } from "src/helpers/password-encryption";
@@ -21,11 +21,28 @@ export class AuthService {
   async validateUser({ email, password }: LoginInput) {
     try {
       const user = await this.accountService.findOne(email);
+
+      if (!user) {
+        throw new UnauthorizedException({
+          code: "INVALID_CREDENTIALD",
+          message: "username or password incorrect",
+        });
+      }
+
       if (await comparePassword(password, user.password)) {
         return user;
       }
+
+      throw new UnauthorizedException({
+        code: "INVALID_CREDENTIALD",
+        message: "username or password incorrect",
+      });
     } catch (error) {
       appLog.error(error);
+      throw new UnauthorizedException({
+        code: "INVALID_CREDENTIALD",
+        message: "username or password incorrect",
+      });
     }
   }
 
@@ -67,14 +84,26 @@ export class AuthService {
     };
   }
 
+  getUserByEmail(email: string) {
+    return this.accountService.findOne(email);
+  }
+
   verifyToken(token: string) {
     try {
-      this.jwtService.verify(token);
+      const user = this.jwtService.verify(token);
+      console.log("user", user);
       return true;
     } catch (error) {
       appLog.error(error);
       return false;
     }
+  }
+
+  async getInfo(accountId: string) {
+    return {
+      enterprise: await this.enterpriseService.findOne(accountId),
+      applicant: await this.applicantService.findOne(accountId),
+    };
   }
 }
 

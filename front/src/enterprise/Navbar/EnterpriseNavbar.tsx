@@ -1,8 +1,11 @@
 import { AddIcon } from "@chakra-ui/icons";
-import { GridItem, Heading, List, ListIcon, ListItem, Text } from "@chakra-ui/react";
+import { Button, GridItem, List, ListIcon, ListItem } from "@chakra-ui/react";
+import { BiLogOut } from "react-icons/bi";
 import { FiUsers } from "react-icons/fi";
 import { HiOutlineFolderOpen } from "react-icons/hi";
 import { MdBroadcastOnHome, MdGraphicEq } from "react-icons/md";
+import { delToken } from "../../http-module/http-module";
+import { CreateJob } from "../Dashboard/CreateJob/CreateJob";
 
 const TOP_MENU = [
   {
@@ -23,21 +26,16 @@ const TOP_MENU = [
   },
 ]
 
-const BOTOM_MENU = [
-  {
-    name: 'New job posting',
-    icon: AddIcon
-  },
-
-]
 export function EnterpriseNavbar() {
-  return <GridItem rowSpan={2} colSpan={1} padding={15} >
-    <Heading as="h3">Google</Heading>
-    <Text fontSize='xl'>Europe, Paris</Text>
 
+  const logOut = () => {
+    delToken()
+    location.reload()
+  }
+  return <GridItem rowSpan={2} colSpan={1} padding={15} >
     <List spacing={4} fontSize={20} mt={20}>
       {
-        TOP_MENU.map(item => <ListItem p="1" _hover={{ bg: "#e2e8f0", fontWeight: '700' }} cursor="pointer">
+        TOP_MENU.map(item => <ListItem key={item.name} p="1" _hover={{ bg: "#e2e8f0", fontWeight: '700' }} cursor="pointer">
           <ListIcon as={item.icon} />
           {item.name}
         </ListItem>)
@@ -45,12 +43,8 @@ export function EnterpriseNavbar() {
     </List>
 
     <List spacing={4} fontSize={20} mt="90%">
-      {
-        BOTOM_MENU.map(item => <ListItem p="1" bg="black" color="lightgrey" textAlign="center" borderRadius={8} cursor="pointer">
-          <ListIcon as={item.icon} />
-          {item.name}
-        </ListItem>)
-      }
+      <CreateJob actionButton={(open) => <Button _hover={{ bg: 'black', color: "light" }} w="100%" bg="black" color="lightgrey" onClick={open} leftIcon={<AddIcon />}>New job posting</Button>} />
+      <Button w="100%" leftIcon={<BiLogOut />} onClick={logOut}>Log out</Button>
     </List>
 
   </GridItem>

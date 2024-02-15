@@ -1,5 +1,8 @@
+import { ApiProperty } from "@nestjs/swagger";
+import { IsString } from "class-validator";
 import { Column, Entity, JoinColumn, OneToMany, PrimaryColumn } from "typeorm";
 import { AccountEntity } from "../account/account.entity";
+import { ApplicationEntity } from "../application/application.entity";
 
 @Entity("Applicant")
 export class ApplicantEntity {
@@ -7,10 +10,13 @@ export class ApplicantEntity {
   id!: string;
 
   @Column({ nullable: true })
-  firsname?: string;
+  firstname?: string;
 
   @Column({ nullable: true })
   lastname?: string;
+
+  @Column({ nullable: true })
+  whoami?: string;
 
   @Column({ type: "json", nullable: true })
   experiences?: Experience[];
@@ -18,11 +24,30 @@ export class ApplicantEntity {
   @OneToMany(() => AccountEntity, (account) => account.applicant)
   @JoinColumn({ name: "id", referencedColumnName: "id" })
   account?: AccountEntity;
+
+  @OneToMany(() => ApplicationEntity, (application) => application.mission, {
+    eager: true,
+  })
+  applications!: ApplicationEntity[];
+
+  get isCompleted() {
+    for (const key in this) {
+      if (!this[key]) return false;
+    }
+    return true;
+  }
 }
 
-export interface Experience {
-  start: number;
-  end: number;
-  post: string;
-  enterprise: string;
+export class Experience {
+  @ApiProperty()
+  @IsString()
+  period!: string;
+
+  @IsString()
+  @ApiProperty()
+  post!: string;
+
+  @IsString()
+  @ApiProperty()
+  enterprise!: string;
 }

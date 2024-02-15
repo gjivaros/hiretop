@@ -41,12 +41,6 @@ export const data = {
       borderColor: '#06020C',
       backgroundColor: '#06020C',
     },
-    {
-      label: 'Hired',
-      data: [900, 900, 200, 800, 500, 4, 776, 822, 222, 900, 737, 200],
-      borderColor: '#00C9A3',
-      backgroundColor: '#00C9A3',
-    },
   ],
 };
 

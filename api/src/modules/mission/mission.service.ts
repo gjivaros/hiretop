@@ -19,7 +19,7 @@ export class MissionService {
     return this.missionRepo.save({ ...createMissionDto, salary });
   }
 
-  findAll(options: { enterpriseId: string; status: MissionStatus }) {
+  findAll(options: { enterpriseId: string; status?: MissionStatus }) {
     return this.missionRepo.find({ where: options });
   }
 

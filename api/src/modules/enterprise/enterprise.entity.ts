@@ -19,4 +19,11 @@ export class EnterpriseEntity {
 
   @OneToMany(() => MissionEntity, (mission) => mission.enterprise)
   missions?: MissionEntity[];
+
+  get isCompleted() {
+    for (const key in this) {
+      if (!this[key]) return false;
+    }
+    return true;
+  }
 }
