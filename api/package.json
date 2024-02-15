@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "cp config.sample.json config.json",
-    "build": "npm run typeonly && nest build",
+    "build": "npm i && npm run typeonly && nest build",
     "format": "prettier --write \"src/**/*.ts\"",
     "start": "nest start",
     "dev": "npm run typeonly && NODE_ENV=development nest start --watch --preserveWatchOutput | pino-pretty -t 'yyyy-mm-dd HH:MM:ss.l' -i 'hostname,pid'",
