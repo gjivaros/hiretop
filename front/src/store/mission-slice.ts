@@ -1,10 +1,11 @@
 import { StateCreator } from "zustand";
 
+export type MissionStatus = "open" | "pending" | "canceled" | "finish";
 export interface Mission {
   id: string;
   name: string;
   description: string;
-  status: string;
+  status: MissionStatus;
   salary: Salary;
   localisation?: string;
   enterpriseId: string;
@@ -15,7 +16,6 @@ export interface Mission {
     name: string;
     description: string;
   };
-
   applications: Application[];
 }
 

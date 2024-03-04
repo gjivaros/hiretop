@@ -1,9 +1,9 @@
 import { Box, Button, Flex, FormControl, FormLabel, GridItem, Heading, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Text, Textarea, Th, Thead, Tr, useToast } from "@chakra-ui/react";
 import { useRef, useState } from "react";
+import { AppMode } from "../../../component/AppMode";
 import { http } from "../../../http-module/http-module";
 import { Experience } from "../../../store/account-slice";
 import { useAppStore } from "../../../store/app-store";
-import { CreateJob } from "../CreateJob/CreateJob";
 import { HiringGraph } from "./HiringGraph";
 import { JobTable } from "./JobTable";
 
@@ -20,8 +20,10 @@ export function EnterpriseHome() {
       <Flex justifyContent="space-between" p={8}>
         <Heading>Welcome back {account?.enterprise.name}</Heading>
 
-        <CreateJob actionButton={(open) => <Button onClick={open}>Create new job</Button>} />
+        <div>
+          <AppMode />
 
+        </div>
       </Flex>
 
       <Box border="1px solid black" p={5} borderRadius={8}>

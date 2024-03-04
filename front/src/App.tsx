@@ -1,3 +1,4 @@
+import { CandidateDashboard } from "./candidate/Dashboard"
 import EnterpriseDashboard from "./enterprise/Dashboard/EnterpriseDashboard"
 import { useAppStore } from "./store/app-store"
 
@@ -10,7 +11,7 @@ function App() {
     return <EnterpriseDashboard />
   }
 
-  return <h1>Hello</h1>
+  return <CandidateDashboard />
 }
 
 export default App

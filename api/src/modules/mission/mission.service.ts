@@ -14,6 +14,7 @@ export class MissionService {
     @InjectRepository(MissionEntity)
     private readonly missionRepo: Repository<MissionEntity>
   ) {}
+
   create(createMissionDto: CreateMissionDto & { enterpriseId: string }) {
     const salary: any = JSON.stringify(createMissionDto.salary);
     return this.missionRepo.save({ ...createMissionDto, salary });

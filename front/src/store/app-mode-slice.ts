@@ -1,5 +1,7 @@
+import { strValOrUndef } from "@paroi/data-formatters-lib";
 import { StateCreator } from "zustand";
 
+const appModeKey = "HIRE_APP_MODE";
 export type AppMode = "applicant" | "enterprise";
 
 export interface AppModeSlice {
@@ -13,9 +15,12 @@ export const createAppModeSlice: StateCreator<
   [],
   AppModeSlice
 > = (set) => ({
-  mode: "enterprise",
+  mode:
+    (strValOrUndef(localStorage.getItem(appModeKey)) as AppMode | undefined) ??
+    "enterprise",
 
   setMode(mode) {
+    localStorage.setItem(appModeKey, mode);
     set({ mode });
   },
 });

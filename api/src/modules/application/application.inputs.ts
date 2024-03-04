@@ -7,6 +7,16 @@ export class CreateApplicationDto {
   @ApiProperty()
   @IsString()
   missionId!: string;
+
+  @ApiProperty()
+  @IsString()
+  applicantId!: string;
+}
+
+export class PostulateMissionDto {
+  @ApiProperty()
+  @IsString()
+  missionId!: string;
 }
 
 export class UpdateApplicationDto {
