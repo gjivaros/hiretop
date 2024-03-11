@@ -11,5 +11,6 @@ export default function EnterpriseDashboard() {
   >
     <EnterpriseNavbar />
     <EnterpriseHome />
+
   </Grid>
 }

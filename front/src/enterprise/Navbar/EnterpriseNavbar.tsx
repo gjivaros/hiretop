@@ -4,25 +4,30 @@ import { BiLogOut } from "react-icons/bi";
 import { FiUsers } from "react-icons/fi";
 import { HiOutlineFolderOpen } from "react-icons/hi";
 import { MdBroadcastOnHome, MdGraphicEq } from "react-icons/md";
+import { Link } from "react-router-dom";
 import { delToken } from "../../http-module/http-module";
 import { CreateJob } from "../Dashboard/CreateJob/CreateJob";
 
 const TOP_MENU = [
   {
     name: 'Home',
-    icon: MdBroadcastOnHome
+    icon: MdBroadcastOnHome,
+    path: ''
   },
   {
     name: 'Jobs',
-    icon: HiOutlineFolderOpen
+    icon: HiOutlineFolderOpen,
+    path: '/enterprise/jobs'
   },
   {
     name: 'Candidates',
-    icon: FiUsers
+    icon: FiUsers,
+    path: '/talents'
   },
   {
-    name: 'Report',
-    icon: MdGraphicEq
+    name: 'Messenger',
+    icon: MdGraphicEq,
+    path: '/messenger'
   },
 ]
 
@@ -37,7 +42,7 @@ export function EnterpriseNavbar() {
       {
         TOP_MENU.map(item => <ListItem key={item.name} p="1" _hover={{ bg: "#e2e8f0", fontWeight: '700' }} cursor="pointer">
           <ListIcon as={item.icon} />
-          {item.name}
+          <Link to={item.path}>{item.name}</Link>
         </ListItem>)
       }
     </List>

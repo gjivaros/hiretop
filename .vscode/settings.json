@@ -2,8 +2,8 @@
   "[typescript]": {
     "editor.defaultFormatter": "hb432.prettier-eslint-typescript",
     "editor.codeActionsOnSave": {
-      "source.fixAll": true,
-      "source.organizeImports": true
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
     },
     "editor.formatOnSave": true,
     "editor.formatOnType": true
@@ -11,8 +11,8 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "vscode.typescript-language-features",
     "editor.codeActionsOnSave": {
-      "source.fixAll": true,
-      "source.organizeImports": true
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
     },
     "editor.formatOnSave": true,
     "editor.formatOnType": true
@@ -23,8 +23,8 @@
   "[scss]": {
     "editor.defaultFormatter": "vscode.css-language-features",
     "editor.codeActionsOnSave": {
-      "source.fixAll": true,
-      "source.organizeImports": true
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
     },
     "editor.rulers": [
       100

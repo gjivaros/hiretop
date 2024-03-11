@@ -1,11 +1,10 @@
-import { Box, Button, Flex, FormControl, FormLabel, GridItem, Heading, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Text, Textarea, Th, Thead, Tr, useToast } from "@chakra-ui/react";
+import { Button, Flex, FormControl, FormLabel, GridItem, Heading, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Text, Textarea, Th, Thead, Tr, useToast } from "@chakra-ui/react";
 import { useRef, useState } from "react";
+import { Outlet } from "react-router-dom";
 import { AppMode } from "../../../component/AppMode";
 import { http } from "../../../http-module/http-module";
 import { Experience } from "../../../store/account-slice";
 import { useAppStore } from "../../../store/app-store";
-import { HiringGraph } from "./HiringGraph";
-import { JobTable } from "./JobTable";
 
 export function EnterpriseHome() {
   const { account } = useAppStore()
@@ -25,22 +24,8 @@ export function EnterpriseHome() {
 
         </div>
       </Flex>
-
-      <Box border="1px solid black" p={5} borderRadius={8}>
-        <Heading>Hiring activity</Heading>
-        <HiringGraph />
-      </Box>
+      <Outlet />
     </GridItem>
-    <GridItem colSpan={4}>
-      <Box mt={15} p={5}>
-        <Heading>Job posting</Heading>
-        <Box h={50} bg="gray.100" mt={5} mb={3}>
-          <Input placeholder='Search for a job' h="100%" outline="none" border="none" focusBorderColor="none" />
-        </Box>
-        <JobTable />
-      </Box>
-    </GridItem>
-
   </>
 }
 

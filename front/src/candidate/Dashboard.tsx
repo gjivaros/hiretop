@@ -8,11 +8,6 @@ import {
   Heading,
   IconButton,
   Stack,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
   useColorModeValue,
   useDisclosure
 } from '@chakra-ui/react'
@@ -91,32 +86,7 @@ export function CandidateDashboard() {
 
       <Box p={10}>
         <Heading>Dashboard</Heading>
-        <Tabs>
-          <TabList>
-            <Tab>All</Tab>
-            <Tab>Pending</Tab>
-            <Tab>Canceled</Tab>
-            <Tab>Offer</Tab>
-          </TabList>
-
-          <TabPanels>
-            <TabPanel>
-              helllo
-            </TabPanel>
-
-            <TabPanel>
-              helllo
-            </TabPanel>
-
-            <TabPanel>
-              helllo
-            </TabPanel>
-
-            <TabPanel>
-              <OpenedMissionTable />
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+        <OpenedMissionTable />
       </Box>
     </>
   )
